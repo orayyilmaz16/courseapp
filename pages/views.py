@@ -4,15 +4,13 @@ from django.http import HttpResponse
 # Create your views here.
 
 
-def home(request):
-    return HttpResponse('anasayfa')
+def index(request):
+    return render(request, 'index.html')
 
-def kurslar(request):
-    return HttpResponse('kurs listesi')
+def about(request):
+    return render(request, "about.html")
 
-def iletisim(request):
-    return HttpResponse('iletisim')
+def contact(request):
+    return render(request, "contact.html")
 
-def hakkimda(request):
-    return HttpResponse('hakkımda')
 

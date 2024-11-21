@@ -10,9 +10,8 @@ from . import views
 
 
 urlpatterns = [
-    path('',views.home),
-    path('anasayfa', views.home),
-    path('iletişim',views.iletisim),
-    path('hakkımızda',views.hakkimda),
-    path('kurslar',views.kurslar),
+    path('',views.index),
+    path('index', views.index),
+    path('contact',views.contact),
+    path('about',views.about),
 ]
