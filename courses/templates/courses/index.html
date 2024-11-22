@@ -9,11 +9,14 @@
     <div class="row">
         <div class="col-3">
             
-            {% include "courses/partials/_categories.html" %}
-
+            {% include "partials/_categories.html" %}
+                
         </div>
+
         <div class="col-9 ">
-              
+            {% for course in courses %}
+              {% include "partials/_course.html" %}
+            {% endfor %}  
 
         </div>
     </div>
