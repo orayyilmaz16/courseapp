@@ -55,7 +55,7 @@ db = {
 
 
 def index(request):
-    kurslar = Course.objects.filter(isActive=1)
+    kurslar = Course.objects.all()
     kategoriler = Category.objects.all()
     
   #  for kurs in db["courses"]:
@@ -68,13 +68,9 @@ def index(request):
     })
 
 
-def details(request, kurs_id):
-    # try:
-        #  course = Course.objects.get(pk=kurs_id)
-    # except:
-        # raise Http404()
-      
-    course = get_object_or_404(Course, pk=kurs_id)
+def details(request, slug):
+        
+    course = get_object_or_404(Course, slug=slug)
      
     context = {
         "course": course
