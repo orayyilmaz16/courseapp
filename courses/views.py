@@ -1,7 +1,7 @@
 from datetime import date,datetime
-from django.shortcuts import get_object_or_404, redirect, render
-from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
-from django.urls import reverse
+from django.shortcuts import get_object_or_404, redirect, render # type: ignore
+from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect # type: ignore
+from django.urls import reverse # type: ignore
 from .models import Course
 from .models import Category
 
