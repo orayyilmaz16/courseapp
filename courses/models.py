@@ -11,11 +11,11 @@ class Category(models.Model):
 
 
 class Course(models.Model):
-    title = models.CharField(max_length=50, null=True)
+    title = models.CharField(max_length=50)
     description = models.TextField()
     imageurl = models.CharField(max_length=50, blank=False)
     date = models.DateField(auto_now=True)
-    isActive = models.BooleanField(default=False)
+    isActive = models.BooleanField(default=True)
     isHome = models.BooleanField(default=False)
     slug = models.SlugField(default="",null=False, blank=True, unique=True, db_index=True)
     categories = models.ManyToManyField(Category)
