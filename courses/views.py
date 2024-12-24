@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, redirect, render # type: ignore
-from courses.forms import CourseCreateForm, CourseEditForm 
-from .models import Course, Category
+from courses.forms import CourseCreateForm, CourseEditForm, UploadForm 
+from .models import Course, Category, UploadModel
 from django.core.paginator import Paginator  # type: ignore
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 def index(request):
     kurslar = Course.objects.filter(isActive=1, isHome=0)
@@ -12,8 +13,13 @@ def index(request):
         "courses": kurslar,
     })
 
+def isAdmin(user):
+    return user.is_superuser
 
+
+@user_passes_test(isAdmin)
 def create_course(request):
+     
      if request.method == "POST":
          form = CourseCreateForm(request.POST)
 
@@ -25,6 +31,7 @@ def create_course(request):
      return render(request, "courses/create-course.html", {"form": form})
 
 
+@login_required()
 def course_list(request):
     kurslar = Course.objects.all()
     return render(request,"courses/course-list.html",{
@@ -52,8 +59,18 @@ def course_delete(request, id):
     
     return render(request, "courses/course-delete.html", {"course": course})
 
-    
+def upload(request):
+    if request.method == "POST":
+        form = UploadForm(request.POST, request.FILES)
 
+        if form.is_valid():
+            model = UploadModel(image=request.FILES["image"]) 
+            model.save()
+            return render(request, "courses/success.html")
+    else:
+        form = UploadForm()
+    return render(request,'courses/upload.html',{"form": form})
+    
 
 
 def search(request):

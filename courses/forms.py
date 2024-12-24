@@ -71,6 +71,10 @@ class CourseEditForm(forms.ModelForm):
             }
          
         }
+
+
+class UploadForm(forms.Form):
+    image = forms.ImageField()
         
         
         
